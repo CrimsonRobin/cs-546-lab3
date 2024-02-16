@@ -20,3 +20,46 @@ import * as authors from "./authors.js");
         console.log (e);
     }
 */
+
+import * as authors from "./authors.js";
+import * as books from "./books.js";
+
+try {
+    const authorid = await authors.getAuthorById("1871e6d7-551f-41cb-9a07-08240b86c95c");
+    console.log("GetAuthorById passed test case 1, here is the result: ");
+    console.log(authorid);
+} catch (error) {
+    console.error(error.message);
+}
+
+try {
+    const authorid = await authors.getAuthorById(-1); // Throws Error
+    console.log(authorid);
+} catch (error) {
+    console.error("GetAuthorById passed test case 2, here is the error: ");
+    console.error(error.message);
+}
+
+try {
+    const authorid = await authors.getAuthorById(1001); // Throws Error
+    console.log(authorid);
+} catch (error) {
+    console.error("GetAuthorById passed test case 3, here is the error: ");
+    console.error(error.message);
+}
+
+try {
+    const authorid = await authors.getAuthorById(); // Throws Error
+    console.log(authorid);
+} catch (error) {
+    console.error("GetAuthorById passed test case 4, here is the error: ");
+    console.error(error.message);
+}
+
+try {
+    const authorid = await authors.getAuthorById('7989fa5e-5617-43f7-a931-46036f9dbcff');// Throws Author not found Error
+    console.log(authorid);
+} catch (error) {
+    console.error("GetAuthorById passed test case 5, here is the error: ");
+    console.error(error.message);
+}
