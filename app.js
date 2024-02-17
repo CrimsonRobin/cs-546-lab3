@@ -63,3 +63,80 @@ try {
     console.error("GetAuthorById passed test case 5, here is the error: ");
     console.error(error.message);
 }
+
+try {
+    const authorAge = await authors.searchAuthorsByAge(40); 
+    // Returns: ["Mayer Staddart", "Madelaine Armatage", "Adorne Byrant"...] //Only the first three are shown
+    console.log("searchAuthorsByAge passed test case 1, here is the result: ");
+    console.log(authorAge);
+} catch (error) {
+    console.error(error.message);
+}
+
+try {
+    const authorAge = await authors.searchAuthorsByAge(5000); // Throws Error since there are no results
+    console.log(authorAge);
+} catch (error) {
+    console.error("searchAuthorsByAge passed test case 2, here is the error: ");
+    console.error(error.message);
+}
+
+try {
+    const authorAge = await authors.searchAuthorsByAge(" "); // Throws Error
+    console.log(authorAge);
+} catch (error) {
+    console.error("searchAuthorsByAge passed test case 3, here is the error: ");
+    console.error(error.message);
+}
+
+try {
+    const authorAge = await authors.searchAuthorsByAge("abc"); // Throws Error
+    console.log(authorAge);
+} catch (error) {
+    console.error("searchAuthorsByAge passed test case 4, here is the error: ");
+    console.error(error.message);
+}
+
+try {
+    const authorAge = await authors.searchAuthorsByAge(); // Throws Error 
+    console.log(authorAge);
+} catch (error) {
+    console.error("searchAuthorsByAge passed test case 5, here is the error: ");
+    console.error(error.message);
+}
+
+try {
+    const BooksByState = await authors.getBooksByState("NJ");
+    // Returns ["Summertime","Crime and Punishment"] // there are others, but this an example of just a few NJ books
+    console.log(BooksByState);
+} catch (error) {
+    console.error(error.message);
+}
+
+try {
+    const BooksByState = await authors.getBooksByState(123); // Throws Error 
+    console.log(BooksByState);
+} catch (error) {
+    console.error(error.message);
+}
+
+try {
+    const BooksByState = await authors.getBooksByState(" "); // Throws Error 
+    console.log(BooksByState);
+} catch (error) {
+    console.error(error.message);
+}
+
+try {
+    const BooksByState = await authors.getBooksByState("Patrick"); //Throws Error because there is no state Patrick in authors.json
+    console.log(BooksByState);
+} catch (error) {
+    console.error(error.message);
+}
+
+try {
+    const BooksByState = await authors.getBooksByState(); // Throws Error 
+    console.log(BooksByState);
+} catch (error) {
+    console.error(error.message);
+}

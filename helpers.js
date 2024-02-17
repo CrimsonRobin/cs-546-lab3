@@ -11,4 +11,20 @@ async function getBooks(){
     return data // this will be the array of book objects
   }
 
-export {getAuthors, getBooks}
+function findAge(date_of_birth, age) {
+  let birthDayNum = Date.parse(date_of_birth);
+  let result = (Date.now() - birthDayNum) / 1000 / 60 / 60 / 24 / 365;
+
+  return result >= age;
+}
+
+function searchBookArray(id, bookArray) {
+  for(let bookId of bookArray) {
+    if(id === bookId) {
+      return true;
+    }
+  }
+  return false;
+}
+
+export {getAuthors, getBooks, findAge, searchBookArray}
