@@ -18,13 +18,4 @@ function findAge(date_of_birth, age) {
   return result >= age;
 }
 
-function searchBookArray(id, bookArray) {
-  for(let bookId of bookArray) {
-    if(id === bookId) {
-      return true;
-    }
-  }
-  return false;
-}
-
-export {getAuthors, getBooks, findAge, searchBookArray}
+export {getAuthors, getBooks, findAge }

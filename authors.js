@@ -52,17 +52,9 @@ const getBooksByState = async (state) => {
 
     const authorFilteredArray = authorData.filter(({HometownState}) => HometownState === trimState);
     //now array of author objects that fulfill the requirements, need to get books and put them into one giant array.
-    const bookArray = [];
-    for(const author of authorFilteredArray) {
-        let { books } = author;
-        if(bookArray.length == 0) {
-            bookArray.push(books);
-        }
-        else {
-            bookArray.concat(books);
-        }
-    }
-    const bookFilteredArray = bookData.filter(({id}) => helper.searchBookArray(id, bookArray));
+    const bookArray = authorFilteredArray.flatMap(({books}) => books);
+
+    const bookFilteredArray = bookData.filter(({id}) => bookArray.find((bid) => bid === id)));
 
     return bookFilteredArray;
 };
