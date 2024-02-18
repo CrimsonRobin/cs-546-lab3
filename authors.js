@@ -39,11 +39,11 @@ const getBooksByState = async (state) => {
     if(typeof state !== "string") {
         throw new Error("given state is not a string.");
     }
-    let trimState = state.trim();
+    let trimState = state.trim().toUpperCase();
     if(trimState.length != 2) {
         throw new Error("given state is not 2 characters long.");
     }
-    if(!statesAbbreviations.hasOwnProperty(trimState)) {
+    if(statesAbbreviations.hasOwnProperty(trimState) == false) {
         throw new Error("given state is not a valid state abbreviation.");
     }
 
@@ -54,9 +54,10 @@ const getBooksByState = async (state) => {
     //now array of author objects that fulfill the requirements, need to get books and put them into one giant array.
     const bookArray = authorFilteredArray.flatMap(({books}) => books);
 
-    const bookFilteredArray = bookData.filter(({id}) => bookArray.find((bid) => bid === id)));
-
-    return bookFilteredArray;
+    const bookFilteredArray = bookData.filter(({id}) => bookArray.find((bid) => bid === id));
+    const bookTitleArray = bookFilteredArray.map(({title}) => title);
+    
+    return bookTitleArray;
 };
 
 const searchAuthorsByHometown = async (town, state) => {};
