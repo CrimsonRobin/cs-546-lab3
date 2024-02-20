@@ -25,7 +25,7 @@ const booksByPageCount = async (min, max) => {
     if(min <= 0 || max <= 0) {
         throw new Error("parameters must be positive numbers.");
     }
-    if(min > max) {
+    if(min >= max) {
         throw new Error("max must be greater than min.");
     }
 
